@@ -14,16 +14,17 @@ class GoogleSuggestions extends Component {
   }
 
   updateSearchInput = value => {
-    this.setState({
-      searchInput: value,
-    })
+    this.setState({searchInput: value})
   }
 
   render() {
     const {searchInput} = this.state
+    console.log(searchInput)
     const {suggestionsList} = this.props
-    const searchResult = suggestionsList.filter(eachItem =>
-      eachItem.suggestion.toLowerCase().includes(searchInput.toLowerCase()),
+    const searchResult = suggestionsList.filter(eachSuggestion =>
+      eachSuggestion.suggestion
+        .toLowerCase()
+        .includes(searchInput.toLowerCase()),
     )
     return (
       <div className="bg-cont">
@@ -38,6 +39,7 @@ class GoogleSuggestions extends Component {
           <input
             type="search"
             onChange={this.onChangeSearchInput}
+            placeholder="Search Google"
             className="search"
             value={searchInput}
           />
